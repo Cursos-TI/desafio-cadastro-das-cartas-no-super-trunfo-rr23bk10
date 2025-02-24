@@ -1,66 +1,121 @@
-#include <iostream>
-#include <string>
+#include <stdio.h>
+#include <string.h>
 
+// Estrutura para representar uma carta de país
+typedef struct {
+    char nome[50];
+    int populacao;
+    float area;
+    float pib;
+    int pontos_turisticos;
+    float densidade_demografica;
+} Carta;
 
-void compararCartas(Carta carta1, Carta carta2, int opcao) {
-    cout << "\nComparando " << carta1.nome << " e " << carta2.nome << "\n";
-    switch (opcao) {
-        case 1:
-            cout << "Atributo: População\n";
-            cout << carta1.nome << ": " << carta1.populacao << " | " << carta2.nome << ": " << carta2.populacao << "\n";
-            if (carta1.populacao > carta2.populacao) cout << "Vencedor: " << carta1.nome << "\n";
-            else if (carta2.populacao > carta1.populacao) cout << "Vencedor: " << carta2.nome << "\n";
-            else cout << "Empate!\n";
+// Função para exibir o menu e obter a escolha do usuário
+int exibirMenu() {
+    int escolha;
+    printf("\nEscolha o atributo para comparar:\n");
+    printf("1 - População\n");
+    printf("2 - Área\n");
+    printf("3 - PIB\n");
+    printf("4 - Número de Pontos Turísticos\n");
+    printf("5 - Densidade Demográfica\n");
+    printf("Escolha: ");
+    scanf("%d", &escolha);
+    return escolha;
+}
+
+// Função para comparar duas cartas com base no atributo escolhido
+void compararCartas(Carta carta1, Carta carta2, int atributo) {
+    printf("\nComparando %s e %s:\n", carta1.nome, carta2.nome);
+
+    switch (atributo) {
+        case 1: // População
+            printf("Atributo: População\n");
+            printf("%s: %d\n", carta1.nome, carta1.populacao);
+            printf("%s: %d\n", carta2.nome, carta2.populacao);
+            if (carta1.populacao > carta2.populacao) {
+                printf("%s vence!\n", carta1.nome);
+            } else if (carta1.populacao < carta2.populacao) {
+                printf("%s vence!\n", carta2.nome);
+            } else {
+                printf("Empate!\n");
+            }
             break;
-        case 2:
-            cout << "Atributo: Área\n";
-            cout << carta1.nome << ": " << carta1.area << " | " << carta2.nome << ": " << carta2.area << "\n";
-            if (carta1.area > carta2.area) cout << "Vencedor: " << carta1.nome << "\n";
-            else if (carta2.area > carta1.area) cout << "Vencedor: " << carta2.nome << "\n";
-            else cout << "Empate!\n";
+
+        case 2: // Área
+            printf("Atributo: Área\n");
+            printf("%s: %.2f\n", carta1.nome, carta1.area);
+            printf("%s: %.2f\n", carta2.nome, carta2.area);
+            if (carta1.area > carta2.area) {
+                printf("%s vence!\n", carta1.nome);
+            } else if (carta1.area < carta2.area) {
+                printf("%s vence!\n", carta2.nome);
+            } else {
+                printf("Empate!\n");
+            }
             break;
-        case 3:
-            cout << "Atributo: PIB\n";
-            cout << carta1.nome << ": " << carta1.pib << " | " << carta2.nome << ": " << carta2.pib << "\n";
-            if (carta1.pib > carta2.pib) cout << "Vencedor: " << carta1.nome << "\n";
-            else if (carta2.pib > carta1.pib) cout << "Vencedor: " << carta2.nome << "\n";
-            else cout << "Empate!\n";
+
+        case 3: // PIB
+            printf("Atributo: PIB\n");
+            printf("%s: %.2f\n", carta1.nome, carta1.pib);
+            printf("%s: %.2f\n", carta2.nome, carta2.pib);
+            if (carta1.pib > carta2.pib) {
+                printf("%s vence!\n", carta1.nome);
+            } else if (carta1.pib < carta2.pib) {
+                printf("%s vence!\n", carta2.nome);
+            } else {
+                printf("Empate!\n");
+            }
             break;
-        case 4:
-            cout << "Atributo: Pontos Turísticos\n";
-            cout << carta1.nome << ": " << carta1.pontosTuristicos << " | " << carta2.nome << ": " << carta2.pontosTuristicos << "\n";
-            if (carta1.pontosTuristicos > carta2.pontosTuristicos) cout << "Vencedor: " << carta1.nome << "\n";
-            else if (carta2.pontosTuristicos > carta1.pontosTuristicos) cout << "Vencedor: " << carta2.nome << "\n";
-            else cout << "Empate!\n";
+
+        case 4: // Pontos Turísticos
+            printf("Atributo: Número de Pontos Turísticos\n");
+            printf("%s: %d\n", carta1.nome, carta1.pontos_turisticos);
+            printf("%s: %d\n", carta2.nome, carta2.pontos_turisticos);
+            if (carta1.pontos_turisticos > carta2.pontos_turisticos) {
+                printf("%s vence!\n", carta1.nome);
+            } else if (carta1.pontos_turisticos < carta2.pontos_turisticos) {
+                printf("%s vence!\n", carta2.nome);
+            } else {
+                printf("Empate!\n");
+            }
             break;
-        case 5:
-            cout << "Atributo: Densidade Demográfica\n";
-            cout << carta1.nome << ": " << carta1.densidadeDemografica << " | " << carta2.nome << ": " << carta2.densidadeDemografica << "\n";
-            if (carta1.densidadeDemografica < carta2.densidadeDemografica) cout << "Vencedor: " << carta1.nome << "\n";
-            else if (carta2.densidadeDemografica < carta1.densidadeDemografica) cout << "Vencedor: " << carta2.nome << "\n";
-            else cout << "Empate!\n";
+
+        case 5: // Densidade Demográfica
+            printf("Atributo: Densidade Demográfica\n");
+            printf("%s: %.2f\n", carta1.nome, carta1.densidade_demografica);
+            printf("%s: %.2f\n", carta2.nome, carta2.densidade_demografica);
+            if (carta1.densidade_demografica < carta2.densidade_demografica) {
+                printf("%s vence!\n", carta1.nome);
+            } else if (carta1.densidade_demografica > carta2.densidade_demografica) {
+                printf("%s vence!\n", carta2.nome);
+            } else {
+                printf("Empate!\n");
+            }
             break;
+
         default:
-            cout << "Opção inválida!\n";
+            printf("Opção inválida!\n");
+            break;
     }
 }
 
 int main() {
-    Carta brasil = {"Brasil", 212600000, 8515767, 2.1, 50, 24.96};
-    Carta eua = {"EUA", 331000000, 9833517, 21.4, 100, 33.68};
-    
+    // Exemplo de cartas pré-cadastradas
+    Carta carta1 = {"Brasil", 213993437, 8515767.049, 1.445, 15, 25.1};
+    Carta carta2 = {"Argentina", 45195777, 2780400.0, 0.449, 10, 16.2};
+
     int escolha;
-    cout << "Escolha um atributo para comparar:\n";
-    cout << "1 - População\n";
-    cout << "2 - Área\n";
-    cout << "3 - PIB\n";
-    cout << "4 - Pontos Turísticos\n";
-    cout << "5 - Densidade Demográfica (vence o menor)\n";
-    cout << "Opção: ";
-    cin >> escolha;
-    
-    compararCartas(brasil, eua, escolha);
-    
+
+    do {
+        escolha = exibirMenu();
+        if (escolha >= 1 && escolha <= 5) {
+            compararCartas(carta1, carta2, escolha);
+        } else {
+            printf("Opção inválida! Tente novamente.\n");
+        }
+    } while (escolha < 1 || escolha > 5);
+
     return 0;
 }
-
