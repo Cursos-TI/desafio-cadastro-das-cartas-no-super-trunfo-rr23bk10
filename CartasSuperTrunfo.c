@@ -1,16 +1,6 @@
 #include <iostream>
 #include <string>
 
-using namespace std;
-
-struct Carta {
-    string nome;
-    int populacao;
-    float area;
-    float pib;
-    int pontosTuristicos;
-    float densidadeDemografica;
-};
 
 void compararCartas(Carta carta1, Carta carta2, int opcao) {
     cout << "\nComparando " << carta1.nome << " e " << carta2.nome << "\n";
@@ -73,3 +63,4 @@ int main() {
     
     return 0;
 }
+
